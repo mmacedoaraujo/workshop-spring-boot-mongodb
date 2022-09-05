@@ -2,6 +2,7 @@ package com.mmacedoaraujo.coursespringboot.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mmacedoaraujo.coursespringboot.domain.User;
+import com.mmacedoaraujo.coursespringboot.dto.UserDTO;
 import com.mmacedoaraujo.coursespringboot.services.UserServices;
 
 @RestController
@@ -23,10 +25,11 @@ public class UserResource {
 	private UserServices userServices;
 
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> list = userServices.findAll();
+		List<UserDTO> dtoList = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(dtoList);
 	}
 
 	@PostMapping
