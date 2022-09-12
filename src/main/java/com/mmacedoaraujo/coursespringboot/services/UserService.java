@@ -11,7 +11,7 @@ import com.mmacedoaraujo.coursespringboot.repository.UserRepository;
 import com.mmacedoaraujo.coursespringboot.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class UserServices {
+public class UserService {
 
 	@Autowired
 	private UserRepository userRepo;
@@ -20,7 +20,7 @@ public class UserServices {
 		return userRepo.findAll();
 	}
 	
-	public User findById(Long id) {
+	public User findById(String id) {
 		Optional<User> user =  userRepo.findById(id);
 		if (user == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado");
