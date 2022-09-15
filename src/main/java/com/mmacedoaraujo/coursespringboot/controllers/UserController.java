@@ -35,11 +35,12 @@ public class UserController {
 		return ResponseEntity.ok().body(new UserDTO(user));
 	}
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User user) {
+	public ResponseEntity<Void> insert(@RequestBody UserDTO userDTO) {
+		User user = userServices.fromDTO(userDTO);
 		user = userServices.insert(user);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 
-		return ResponseEntity.created(uri).body(user);
+		return ResponseEntity.created(uri).build();
 	}
 
 }
