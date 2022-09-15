@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -49,6 +50,13 @@ public class UserController {
 		userServices.delete(id);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<UserDTO> update(@PathVariable String id,@RequestBody User user) {
+		User updatedUser = userServices.update(id, user);
+
+		return ResponseEntity.ok().body(new UserDTO(updatedUser));
 	}
 
 
