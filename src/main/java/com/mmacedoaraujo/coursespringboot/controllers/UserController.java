@@ -30,7 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> findById(@PathVariable UUID id) {
+	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
 		User user = userServices.findById(id);
 
 		return ResponseEntity.ok().body(new UserDTO(user));
@@ -45,10 +45,12 @@ public class UserController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable UUID id) {
+	public ResponseEntity<Void> delete(@PathVariable String id) {
 		userServices.delete(id);
 
 		return ResponseEntity.noContent().build();
 	}
+
+
 
 }

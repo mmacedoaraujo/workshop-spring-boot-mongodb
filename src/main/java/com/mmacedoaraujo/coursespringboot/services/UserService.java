@@ -22,7 +22,7 @@ public class UserService {
 		return userRepo.findAll();
 	}
 
-	public User findById(UUID id) {
+	public User findById(String id) {
 		Optional<User> obj = userRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
@@ -31,7 +31,7 @@ public class UserService {
 		return userRepo.save(user);
 	}
 
-	public void delete(UUID id) {
+	public void delete(String id) {
 		userRepo.deleteById(id);
 	}
 
