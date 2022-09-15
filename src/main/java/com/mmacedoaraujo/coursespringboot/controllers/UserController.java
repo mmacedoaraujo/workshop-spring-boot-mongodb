@@ -2,6 +2,7 @@ package com.mmacedoaraujo.coursespringboot.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+	public ResponseEntity<UserDTO> findById(@PathVariable UUID id) {
 		User user = userServices.findById(id);
 
 		return ResponseEntity.ok().body(new UserDTO(user));
@@ -41,6 +42,13 @@ public class UserController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 
 		return ResponseEntity.created(uri).build();
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable UUID id) {
+		userServices.delete(id);
+
+		return ResponseEntity.noContent().build();
 	}
 
 }

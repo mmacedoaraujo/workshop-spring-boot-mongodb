@@ -2,6 +2,7 @@ package com.mmacedoaraujo.coursespringboot.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.mmacedoaraujo.coursespringboot.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserService {
 		return userRepo.findAll();
 	}
 
-	public User findById(String id) {
+	public User findById(UUID id) {
 		Optional<User> obj = userRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
@@ -30,6 +31,9 @@ public class UserService {
 		return userRepo.save(user);
 	}
 
+	public void delete(UUID id) {
+		userRepo.deleteById(id);
+	}
 
 	public User fromDTO(UserDTO userDTO) {
 		return new User(userDTO.getId(),userDTO.getName(), userDTO.getEmail());

@@ -1,13 +1,14 @@
 package com.mmacedoaraujo.coursespringboot.dto;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import com.mmacedoaraujo.coursespringboot.domain.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private UUID id;
 	private String name;
 	private String email;
 
@@ -21,11 +22,11 @@ public class UserDTO implements Serializable {
 		this.email = obj.getEmail();
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

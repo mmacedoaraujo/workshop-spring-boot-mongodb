@@ -2,6 +2,7 @@ package com.mmacedoaraujo.coursespringboot.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +12,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String id;
+	private UUID id;
 	private String name;
 	private String email;
 
@@ -19,17 +20,17 @@ public class User implements Serializable {
 
 	}
 
-	public User(String id, String name, String email) {
+	public User(UUID id, String name, String email) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
