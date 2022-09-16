@@ -16,14 +16,17 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 
+	private User user;
+
 	public User() {
 
 	}
 
-	public User(String id, String name, String email) {
+	public User(String id, String name, String email, User user) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.user = user;
 	}
 
 	public String getId() {

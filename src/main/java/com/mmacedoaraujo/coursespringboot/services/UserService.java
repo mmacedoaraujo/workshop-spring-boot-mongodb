@@ -38,7 +38,7 @@ public class UserService {
 	public User update(String id, User updateUser) {
 		User user = userRepo.findById(id).get();
 
-		if(!user.equals(null)) {
+		if(user != null) {
 			user.setName(updateUser.getName());
 			user.setEmail(updateUser.getEmail());
 		}
