@@ -15,15 +15,18 @@ public class Post implements Serializable {
     private String title;
     private String body;
 
+    public User user;
+
     public Post() {
 
     }
 
-    public Post(String id, Date date, String title, String body) {
+    public Post(String id, Date date, String title, String body, User user) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public String getId() {
