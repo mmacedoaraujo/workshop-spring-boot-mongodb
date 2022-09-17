@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Objects;
 @Document
 public class Post implements Serializable {
-    private static final long seriaVersioUID = 1L;
     @Id
     private String id;
     private Date date;
