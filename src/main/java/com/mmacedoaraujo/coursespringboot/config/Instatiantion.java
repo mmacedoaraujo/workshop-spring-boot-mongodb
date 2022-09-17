@@ -7,6 +7,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import com.mmacedoaraujo.coursespringboot.domain.Post;
+import com.mmacedoaraujo.coursespringboot.dto.AuthorDTO;
 import com.mmacedoaraujo.coursespringboot.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -34,6 +35,7 @@ public class Instatiantion implements ApplicationRunner {
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
 		userRepository.deleteAll();
+		postRepository.deleteAll();
 
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
@@ -41,8 +43,8 @@ public class Instatiantion implements ApplicationRunner {
 
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-		Post post1 = new Post(null, sdf.parse("22/03/2018)"), "Viagem", "Partiu viagem!", maria);
-		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Férias", "Partiu férias", bob);
+		Post post1 = new Post(null, sdf.parse("22/03/2018)"), "Viagem", "Partiu viagem!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Férias", "Partiu férias", new AuthorDTO(bob));
 
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
