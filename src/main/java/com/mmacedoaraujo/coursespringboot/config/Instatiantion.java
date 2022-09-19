@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.mmacedoaraujo.coursespringboot.domain.Post;
 import com.mmacedoaraujo.coursespringboot.dto.AuthorDTO;
+import com.mmacedoaraujo.coursespringboot.dto.CommentDTO;
 import com.mmacedoaraujo.coursespringboot.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -45,6 +46,13 @@ public class Instatiantion implements ApplicationRunner {
 
 		Post post1 = new Post(null, sdf.parse("22/03/2018)"), "Partiu viagem", "Partiu viagem!", new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Férias", "Partiu férias", new AuthorDTO(maria));
+
+		CommentDTO comment = new CommentDTO("Boa viagem mano",sdf.parse("21/03/2018"), new AuthorDTO(alex));
+		CommentDTO comment2 = new CommentDTO("Aproveite",sdf.parse("21/03/2018"), new AuthorDTO(bob));
+		CommentDTO comment3 = new CommentDTO("Tenha um ótimo dia",sdf.parse("21/03/2018"), new AuthorDTO(alex));
+
+		post1.getComments().addAll(Arrays.asList(comment, comment2));
+		post2.getComments().addAll(Arrays.asList(comment3));
 
 		postRepository.saveAll(Arrays.asList(post1, post2));
 
