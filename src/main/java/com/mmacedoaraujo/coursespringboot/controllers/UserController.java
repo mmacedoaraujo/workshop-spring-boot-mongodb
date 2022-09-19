@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.mmacedoaraujo.coursespringboot.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,13 @@ public class UserController {
 		User user = userServices.findById(id);
 
 		return ResponseEntity.ok().body(new UserDTO(user));
+	}
+
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> getPosts(@PathVariable String id) {
+		User user = userServices.findById(id);
+
+		return ResponseEntity.ok().body(user.getPosts());
 	}
 	@PostMapping
 	public ResponseEntity<Void> insert(@RequestBody UserDTO userDTO) {
