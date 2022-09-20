@@ -1,14 +1,12 @@
 package com.mmacedoaraujo.coursespringboot.controllers;
 
+import com.mmacedoaraujo.coursespringboot.controllers.util.URL;
 import com.mmacedoaraujo.coursespringboot.domain.Post;
 import com.mmacedoaraujo.coursespringboot.services.PostService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,12 @@ public class PostController {
         Post post = postService.findById(id);
 
         return ResponseEntity.ok().body(post);
+    }
+
+    @GetMapping(value = "/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findByTitle(text);
+        return ResponseEntity.ok().body(list);
     }
 }
